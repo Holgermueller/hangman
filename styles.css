@@ -3,4 +3,20 @@ html {
   padding: 0;
   margin: 0;
   background-color: blue;
+  height: 100vh;
+  width: 100vw;
+}
+
+.word-holder {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bolder;
+  letter-spacing: 10px;
+}
+
+.letters-guessed {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 10px;
 }

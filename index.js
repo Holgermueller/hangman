@@ -1,6 +1,16 @@
 "use strict";
-function helloWorld() {
-  console.log("Hello World");
+
+const word = "hello";
+
+let lettersGuessed = ["letters guessed to here"];
+
+function pushWordToDOM() {
+  document.getElementById("wordHolder").innerHTML = word;
 }
 
-helloWorld();
+function storeGuessedLetters() {
+  document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+}
+
+pushWordToDOM();
+storeGuessedLetters();
