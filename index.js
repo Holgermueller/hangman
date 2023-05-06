@@ -59,7 +59,7 @@ function handleGuess(chosenLetter) {
 function hideWordAndPushToDOM() {
   hiddenWord = answer
     .split("")
-    .map((letter) => (lettersGuessed.indexOf(letter) >= 0 ? letter : " _ "))
+    .map((letter) => (lettersGuessed.indexOf(letter) >= 0 ? letter : "_ "))
     .join("");
 
   document.getElementById("wordHolder").innerHTML = hiddenWord;
@@ -73,7 +73,8 @@ function didUserWin() {
 
 function didUserLose() {
   if (guessesLeft == 0) {
-    document.getElementById("keyboard").innerHTML = "Sorry, you lost.";
+    document.getElementById("keyboard").innerHTML = "The answer was " + answer;
+    document.getElementById("wordHolder").innerHTML = "Sorry, you lost.";
   }
 }
 
