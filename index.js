@@ -46,9 +46,13 @@ function handleGuess(chosenLetter) {
 
   if (answer.indexOf(chosenLetter) >= 0) {
     hideWordAndPushToDOM();
+    didUserWin();
+    console.log("right");
   } else if (answer.indexOf(chosenLetter) === -1) {
     guessesLeft--;
     guessesLeftToDom();
+    didUserLose();
+    console.log("wrong");
   }
 }
 
@@ -59,6 +63,18 @@ function hideWordAndPushToDOM() {
     .join("");
 
   document.getElementById("wordHolder").innerHTML = hiddenWord;
+}
+
+function didUserWin() {
+  if (hiddenWord === answer) {
+    document.getElementById("keyboard").innerHTML = "You Won!!!";
+  }
+}
+
+function didUserLose() {
+  if (guessesLeft == 0) {
+    document.getElementById("keyboard").innerHTML = "Sorry, you lost.";
+  }
 }
 
 function guessesLeftToDom() {
