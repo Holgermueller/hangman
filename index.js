@@ -1,7 +1,16 @@
 "use strict";
 
-const word = "hello";
-let lettersGuessed = ["letters guessed to here"];
+const words = ["Image", "Boom Studios", "DC", "Marvel", "Dark Horse"];
+
+let answer = "";
+let guessesLeft = 5;
+let lettersGuessed = [];
+let hiddenWord = null;
+
+function chooseRandomWord() {
+  answer = words[Math.floor(Math.random() * words.length)];
+  console.log(answer);
+}
 
 function generateButtons() {
   let buttonLetters = "abcdefghijklmnopqrstuvwxyz"
@@ -9,19 +18,19 @@ function generateButtons() {
     .map(
       (letter) =>
         `
-    <button
-    class="btn btn-lg btn-primary m-2"
-    id='` +
+      <button
+        class="btn btn-lg btn-primary m-2"
+        id='` +
         letter +
         `'
-    onClick="handleGuess('` +
+        onClick="handleGuess('` +
         letter +
         `')"
-    >
-    ` +
+      >
+        ` +
         letter +
         `
-    </button>
+      </button>
     `
     )
     .join("");
@@ -29,25 +38,33 @@ function generateButtons() {
   document.getElementById("keyboard").innerHTML = buttonLetters;
 }
 
-function pushWordToDOM() {
-  let underscoredWord = word.replace(/[a-z]/g, "-");
-  document.getElementById("wordHolder").innerHTML = underscoredWord;
+function handleGuess(chosenLetter) {
+  lettersGuessed.indexOf(chosenLetter) === -1
+    ? lettersGuessed.push(chosenLetter)
+    : null;
+  document.getElementById(chosenLetter).setAttribute("disabled", true);
+
+  if (answer.indexOf(chosenLetter) >= 0) {
+    hideWordAndPushToDOM();
+  } else if (answer.indexOf(chosenLetter) === -1) {
+    guessesLeft--;
+    guessesLeftToDom();
+  }
 }
 
-function handleGuess(chosenLetter) {
-  console.log("click");
+function hideWordAndPushToDOM() {
+  hiddenWord = answer
+    .split("")
+    .map((letter) => (lettersGuessed.indexOf(letter) >= 0 ? letter : " _ "))
+    .join("");
+
+  document.getElementById("wordHolder").innerHTML = hiddenWord;
 }
 
 function guessesLeftToDom() {
-  let guessesLeft = word.length;
-  document.getElementById("guessesLeft").innerHTML = guessesLeft + 1;
+  document.getElementById("guessesLeft").innerHTML = guessesLeft;
 }
 
-function storeGuessedLetters() {
-  document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
-}
-
-pushWordToDOM();
-storeGuessedLetters();
-guessesLeftToDom();
+chooseRandomWord();
+hideWordAndPushToDOM();
 generateButtons();
