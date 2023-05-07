@@ -2,15 +2,26 @@
 
 const words = [
   "Image",
-  "Boom Studios",
+  "BoomStudios",
   "DC",
   "Marvel",
-  "Dark Horse",
-  "2000 AD",
+  "DarkHorse",
+  "2000AD",
   "Valiant",
   "Defiant",
   "Pacific",
   "Continuity",
+  "Chaos",
+  "Malibu",
+  "BadIdea",
+  "MirageStudios",
+  "MilestoneMedia",
+  "AfterShock",
+  "Amalgam",
+  "Charlton",
+  "Quality",
+  "Fawcett",
+  "Nedor",
 ];
 
 let answer = "";
@@ -91,6 +102,16 @@ function didUserLose() {
 
 function guessesLeftToDom() {
   document.getElementById("guessesLeft").innerHTML = guessesLeft;
+}
+
+function reset() {
+  guessesLeft = 5;
+  lettersGuessed = [];
+
+  chooseRandomWord();
+  hideWordAndPushToDOM();
+  generateButtons();
+  guessesLeftToDom();
 }
 
 chooseRandomWord();
