@@ -1,6 +1,17 @@
 "use strict";
 
-const words = ["Image", "Boom Studios", "DC", "Marvel", "Dark Horse"];
+const words = [
+  "Image",
+  "Boom Studios",
+  "DC",
+  "Marvel",
+  "Dark Horse",
+  "2000 AD",
+  "Valiant",
+  "Defiant",
+  "Pacific",
+  "Continuity",
+];
 
 let answer = "";
 let guessesLeft = 5;
@@ -8,12 +19,13 @@ let lettersGuessed = [];
 let hiddenWord = null;
 
 function chooseRandomWord() {
-  answer = words[Math.floor(Math.random() * words.length)];
+  answer = words[Math.floor(Math.random() * words.length)].toUpperCase();
   console.log(answer);
 }
 
 function generateButtons() {
-  let buttonLetters = "abcdefghijklmnopqrstuvwxyz"
+  let buttonLetters = "abcdefghijklmnopqrstuvwxyz0123456789"
+    .toUpperCase()
     .split("")
     .map(
       (letter) =>
@@ -47,19 +59,18 @@ function handleGuess(chosenLetter) {
   if (answer.indexOf(chosenLetter) >= 0) {
     hideWordAndPushToDOM();
     didUserWin();
-    console.log("right");
   } else if (answer.indexOf(chosenLetter) === -1) {
     guessesLeft--;
     guessesLeftToDom();
     didUserLose();
-    console.log("wrong");
   }
 }
 
 function hideWordAndPushToDOM() {
   hiddenWord = answer
+    .toUpperCase()
     .split("")
-    .map((letter) => (lettersGuessed.indexOf(letter) >= 0 ? letter : "_ "))
+    .map((letter) => (lettersGuessed.indexOf(letter) >= 0 ? letter : " _ "))
     .join("");
 
   document.getElementById("wordHolder").innerHTML = hiddenWord;
@@ -85,3 +96,4 @@ function guessesLeftToDom() {
 chooseRandomWord();
 hideWordAndPushToDOM();
 generateButtons();
+guessesLeftToDom();
