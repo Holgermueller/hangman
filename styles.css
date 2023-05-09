@@ -8,6 +8,7 @@ html {
 }
 
 header {
+  margin-top: 5%;
   text-align: center;
 }
 
@@ -22,9 +23,7 @@ header {
   letter-spacing: 10px;
 }
 
-.letters-guessed {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 10px;
+#keyboard {
+  width: 75%;
+  margin: 5% auto;
 }
